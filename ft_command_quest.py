@@ -1,15 +1,11 @@
 import sys
 
 
-def header(Title: str) -> None:
-    print(Title)
-
-
 def main() -> None:
     args = sys.argv
     total_args = len(args)
 
-    header("=== Command Quest ===")
+    print("=== Command Quest ===")
     print(f"Program name: {args[0]}")
 
     if total_args == 1:

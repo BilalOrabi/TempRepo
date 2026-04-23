@@ -1,23 +1,21 @@
 import sys
 
 
-def header(Title: str) -> None:
-    print(Title)
+def parse_scores(args: list[str]) -> list[int]:
+    scores = []
+    for arg in args:
+        try:
+            scores.append(int(arg))
+        except ValueError:
+            print(f"Invalid parameter: '{arg}'")
+    return scores
 
 
 def main() -> None:
+    print("=== Player Score Analytics ===")
 
-    header("=== Player Score Analytics ===")
-
-    args = sys.argv[1:]
-    scores = []
-
-    for arg in args:
-        try:
-            score = int(arg)
-            scores.append(score)
-        except ValueError:
-            print(f"Invalid parameter: '{arg}'")
+    args = sys.argv
+    scores = parse_scores(args[1:])
 
     if not scores:
         print(
@@ -27,18 +25,19 @@ def main() -> None:
         return
 
     total_players = len(scores)
-    total_scores = sum(scores)
-    average_scores = total_scores / total_players
+    total_score = sum(scores)
+    average_score = total_score / total_players
     high_score = max(scores)
     low_score = min(scores)
-    range = high_score - low_score
+    score_range = high_score - low_score
 
+    print(f"Scores processed: {scores}")
     print(f"Total players: {total_players}")
-    print(f"Total score: {total_scores}")
-    print(f"Average score: {average_scores}")
+    print(f"Total score: {total_score}")
+    print(f"Average score: {average_score}")
     print(f"High score: {high_score}")
     print(f"Low score: {low_score}")
-    print(f"Score range: {range}")
+    print(f"Score range: {score_range}")
 
 
 if __name__ == "__main__":
